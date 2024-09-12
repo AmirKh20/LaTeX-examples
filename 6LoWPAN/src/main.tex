@@ -1,0 +1,354 @@
+\documentclass[10pt]{beamer}
+
+\usetheme{AnnArbor}
+\usecolortheme{dracula}
+
+
+\title{6LoWPANs: An Overview}
+\author{Amir~Khayatzadeh}
+\institute[IAUM]{Department of Computer Engineering\\ Islamic Azad University, Mashhad Branch}
+\date{Spring 2024}
+
+\usepackage{tikz}
+\titlegraphic{
+    \begin{tikzpicture}[overlay, remember picture]
+    \node[right=0.05cm] at (current page.149){
+        \includegraphics[scale=.1]{../images/azad-logo.png}
+    };
+    \node[right=1.5cm] at (current page.151){
+        {\scriptsize Islamic Azad University, Mashhad Branch}
+    };
+    \end{tikzpicture}
+}
+
+\AtBeginSection[]
+{
+  \begin{frame}
+    \frametitle{Table of Contents}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+\begin{document}
+
+\begin{frame}[plain]
+    \titlepage
+\end{frame}
+
+
+\section{Introduction}
+\subsection{LoWPANs}
+\begin{frame}{LLNs\cite{rfc6568}}{What Are They?}
+
+    Low-power and lossy networks (LLNs) are networks made of highly constrained nodes:
+    \begin{itemize}
+        \item Limited CPU
+        \item Limited Memory
+        \item Limited Power
+    \end{itemize}
+    interconnected by a variety of "lossy" links:
+    \begin{itemize}
+        \item Low-power Radio Links
+        \item Power-line Communication (PLC)
+    \end{itemize}
+    Some Characteristics:
+    \begin{itemize}
+        \item Low Speed
+        \item Low Performance
+        \item Low Cost
+        \item Unstable Connectivity
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}{LoWPANs and IEEE 802.15.4}{An Instance of LLNs}
+    IEEE 802.15.4\cite{9144691} defines standards for low-rate wireless networks for the physical layer and MAC sublayer.
+
+    Characteristics of a \underline{Lo}w-power \underline{W}ireless \underline{P}ersonal \underline{A}rea \underline{N}etwork (LoWPAN)\cite{rfc6568}:
+    \begin{itemize}
+        \item Limited Processing Capability
+            \begin{itemize}
+                \item 8, 16, 32-bit Processors
+                \item Clock Rate in Order of Tens of MHz
+            \end{itemize}
+        \item Small Memory Capacity
+            \begin{itemize}
+                \item Only a Few Kilobytes of RAM
+                \item A Few Dozen of Kilobytes or Megabytes of ROM
+            \end{itemize}
+    \end{itemize}
+    \vspace*{-8mm}
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \begin{figure}[htpb]
+                \centering
+                \includegraphics[width=0.4\textwidth]{../images/Imote2-cmt.png}
+                \caption{IMote2: wireless sensor network node\cite{imote2cmt} with 256kB RAM, 32MB Flash}
+            \end{figure}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \begin{figure}[htpb]
+                \centering
+                \includegraphics[width=0.4\textwidth]{../images/cc2538.png}
+                \caption{CC2538: wireless microcontroller System-on-Chip (SoC) with 32kB RAM, 512kB Flash\cite{cc2538}}
+            \end{figure}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Characteristics of LoWPANs\cite{rfc6568}}
+    \begin{itemize}
+        \item Low Power
+            \begin{itemize}
+                \item Radio Frequency Transceivers' Currents Between 10 to 30 mA
+            \end{itemize}
+        \item Short Range
+            \begin{itemize}
+                \item 10 Meters defined by IEEE 802.15.4
+                \item Tens of Meters
+                \item Over 100 Meters in line-of-sight situations
+            \end{itemize}
+        \item Low Bit Rate
+            \begin{itemize}
+                \item 250 kbit/s defined by IEEE 802.15.4 in the 2.4-GHz band
+                \item 20, 40, 100 kbit/s
+            \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\subsection{6LoWPANs}
+\begin{frame}{About 6LoWPAN}{The IETF}
+    The Internet Engineering Task Force (IETF), which is responsible for the technical standards of many Internet protocols such as HTTP, TCP, UDP, etc., has defined IPv\underline{6} over \underline{Lo}w-power \underline{W}ireless \underline{P}ersonal \underline{A}rea \underline{N}etwork (6LoWPAN) in RFC 4919\cite{rfc4919}.
+
+    \begin{figure}[htpb]
+        \centering
+        \includegraphics[width=0.6\textwidth]{../images/ietf-logo.png}
+        \caption{The IETF Logo\cite{IETF}}
+    \end{figure}
+
+\end{frame}
+
+\begin{frame}{About 6LoWPAN}{Why?}
+    The application of IP technology is assumed to provide the following benefits\cite{rfc4919}:
+    \begin{enumerate}
+        \item Existing Infrastructure
+        \item Already Working Technology
+        \item Open and Freely Available
+        \item Tools for Diagnostics, Management, and Commissioning
+        \item Connectable to Other IP-based Networks
+    \end{enumerate}
+
+    \begin{figure}[htpb]
+        \centering
+        \includegraphics[width=0.5\textwidth]{../images/lowpan-logo.png}
+        \caption{6LoWPAN Logo}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{Use Cases}{The Internet of Things}
+    6LoWPANs have changed IoT radically. Before, a complex application layer gateway was needed to make devices such as ZigBee, Bluetooth and proprietary systems connect to the Internet.\cite{olsson20146lowpan}
+
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \begin{figure}[htpb]
+                \centering
+                \includegraphics[width=0.8\textwidth]{../images/lifx-light-bulb.jpg}
+                \caption{LIFX LED Bulbs\cite{LIFX}}
+            \end{figure}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \begin{figure}[htpb]
+                \centering
+                \includegraphics[width=0.8\textwidth]{../images/Tado-Thermostat.jpg}
+                \caption{Tado Smart Thermostat\cite{tado-Smart-Thermostat}}
+            \end{figure}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Network Architecture}
+    \begin{figure}[htpb]
+        \centering
+        \includegraphics[width=0.68\textwidth]{../images/6lowpan-network-architecture-inverted.png}
+        \caption{An example of an IPv6 network with a 6LoWPAN mesh network\cite{olsson20146lowpan}}
+    \end{figure}
+\end{frame}
+
+\section{Challenges}
+\begin{frame}
+    A number of challenges are faced for applying IP on LoWPANs\cite{rfc4919}:
+    \begin{enumerate}
+        \item IP Connectivity
+            \begin{itemize}
+                \item Auto Configuration
+                \item Large Address Space
+                    \begin{itemize}
+                        \item IPv6 has $3.4*10^{38} $ unique addresses
+                    \end{itemize}
+                \item Limited Packet Size
+                \item Simple Interconnectivity to Other IP Networks like the Internet
+            \end{itemize}
+        \item Topologies
+            \begin{itemize}
+                \item Mesh and Star Topologies
+                \item Requirements for The Routing Protocol:
+                    \begin{itemize}
+                        \item Low (or no) Overhead On Data Packets
+                        \item Low Chattiness
+                        \item Computation And Memory Requirements
+                        \item Appropriate Routing In The Presence of Sleeping Nodes
+                    \end{itemize}
+            \end{itemize}
+        \item Service Discovery
+        \item Security
+    \end{enumerate}
+\end{frame}
+
+\subsection{Packet Size}
+\begin{frame}{Maximum Transmission Unit (MTU)}
+    The MTU size for IPv6 packets over IEEE 802.15.4 is 1280 octets. However, a full IPv6 packet does not fit in an IEEE 802.15.4 frame\cite{rfc4919} because the maximum packet size in IEEE 802.15.4 is 127 bytes.
+
+    \bigskip
+    Some solutions have been applied in 6LoWPANs adaptation layer:
+    \begin{itemize}
+        \item Data Fragmentation and Reassembly
+        \item Header Compression
+    \end{itemize}
+    \begin{figure}[htpb]
+        \centering
+        \includegraphics[width=0.8\textwidth]{../images/6lowpan-stack-inverted.png}
+        \caption{The OSI model, a Wi-Fi stack example and the 6LoWPAN stack\cite{olsson20146lowpan}}
+    \end{figure}
+
+\end{frame}
+
+\section{Routing}
+\subsection{Two Categories}
+\begin{frame}{Route-over (layer three) Forwarding}
+    \begin{figure}[htpb]
+        \centering
+        \includegraphics[width=\textwidth]{../images/route-over-inverted.png}
+        \caption{Route-over Forwarding in The Network Layer\cite{olsson20146lowpan}}
+    \end{figure}
+
+    \begin{itemize}
+        \item Each hop represent an IP router.\cite{olsson20146lowpan}
+        \item The most widely used routing protocol for route-over 6LoWPAN networks today is routing protocol for low-power and lossy networks (RPL) as defined by IETF in RFC 6550.\cite{olsson20146lowpan}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Mesh-under (layer two) Forwarding}
+    \begin{figure}[htpb]
+        \centering
+        \includegraphics[width=\textwidth]{../images/mesh-under-inverted.png}
+        \caption{Mesh-under Forwarding in The Data Link Layer\cite{olsson20146lowpan}}
+    \end{figure}
+
+    \begin{itemize}
+        \item Mesh-under networks are considered to be one IP subnet.\cite{olsson20146lowpan}
+        \item The only IP router in such a system is the edge router.\cite{olsson20146lowpan}
+        \item Mesh-under networks are best suited for smaller and local networks.\cite{olsson20146lowpan}
+    \end{itemize}
+\end{frame}
+
+\section{Design Space}
+\begin{frame}
+    The possible dimensions for scenario categorization\cite{rfc6568}:
+    \begin{itemize}
+        \item Deployment
+        \item Network Size
+        \item Power Source
+        \item Connectivity
+        \item Multi-Hop Communication
+            \begin{itemize}
+                \item The number of hops needed to reach the destination or the edge of the network.
+                \item A single hop for simple star topology.
+                \item Multi-hop communication for more elaborate topologies: meshes or trees.
+            \end{itemize}
+        \item Traffic Pattern
+            \begin{itemize}
+                \item Point-to-Multipoint (P2MP)
+                \item Multipoint-to-Point (MP2P)
+                \item Point-to-Point (P2P)
+            \end{itemize}
+        \item Security Level
+        \item Mobility
+        \item Quality of Service(QoS)
+            \begin{itemize}
+                \item Parameters for QoS should consider collective data for latency, packet loss, data throughput, etc.
+            \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\section{Application Scenarios}
+\subsection{Healthcare}
+\begin{frame}{A Use Case and Its Requirements}{Example: Healthcare at Home by Tele-Assistance}
+    A senior citizen who lives alone wears one to several wearable LoWPAN nodes to measure heartbeat, pulse rate, etc.\cite{rfc6568}
+    \begin{figure}[htpb]
+        \centering
+        \includegraphics[width=0.6\textwidth]{../images/dangers-of-seniors-living alone2.jpg}
+        \caption{Dangers of Seniors Living Alone.\cite{Jonahtjw_2019}}
+    \end{figure}
+
+\end{frame}
+
+\begin{frame}{Proposed Method and Things to Consider\cite{rfc6568}}
+    Proposed Method:
+    \begin{itemize}
+        \item Densely installed nodes for movement detection
+        \item A LoWPAN border router (LBR) at home for sending information
+        \item LCDs to check the data at home
+    \end{itemize}
+
+    Things to Consider:
+    \begin{itemize}
+        \item Node Management
+            \begin{itemize}
+                \item Different Duty Cycles
+            \end{itemize}
+        \item Multipath Interference
+            \begin{itemize}
+                \item Walls and Obstacles
+                \item Change of Body Position During Sleep
+            \end{itemize}
+        \item Data Gathering.
+            \begin{itemize}
+                \item Periodic
+                \item Event-driven: Very Time-critical
+            \end{itemize}
+        \item Privacy
+            \begin{itemize}
+                \item Secret Keys Between Sensor Nodes
+                \item Role-based Access Control
+            \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Parameters}
+    Dominant parameters in healthcare applications\cite{rfc6568}:
+    \begin{enumerate}
+        \item Deployment: Pre-planned.
+        \item Network Size: Small, high node density.
+        \item Power Source: Hybrid.
+        \item Connectivity: Always on.
+        \item Multi-Hop Communication: Multi-hop for home-care devices; patient’s body network is star topology. Multipath interference due to walls and obstacles at home must be considered.
+        \item Traffic Pattern: MP2P/P2MP (data collection), P2P (local diagnostic).
+        \item Security Level: Data privacy and security must be provided. Encryption is required. It is required that role-based access control be supported by a lightweight authentication mechanism.
+        \item Mobility: Moderate (patient’s mobility).
+        \item QoS: High level of reliability support (life-or-death implication), role-based.
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}{6LoWPAN Applicability}
+    \begin{figure}[htpb]
+        \centering
+        \includegraphics[width=\textwidth]{../images/healthcare-inverted.png}
+        \caption{A Mobile Healthcare Scenario\cite{rfc6568}}
+    \end{figure}
+    The patient’s body network can be simply configured as a star topology with a LC dealing with data aggregation and dynamic network attachment when the patient moves around at home.\cite{rfc6568}
+\end{frame}
+
+\section*{References}
+\bibliography{main}
+\bibliographystyle{ieeetr}
+\end{document}

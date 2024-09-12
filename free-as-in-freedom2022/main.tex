@@ -1,0 +1,472 @@
+\documentclass{beamer}
+%\usepackage{datetime}
+
+\usetheme{AnnArbor}
+%\usepackage{fontspec}
+%\setmainfont{Source Serif Pro}
+%\setsansfont{Source Sans Pro}
+%\setmonofont{Source Code Pro}
+\usecolortheme{dracula}
+
+%\newdateformat{seasonYearDate}{\monthname[\THEMONTH], \THEYEAR}
+%\usepackage[backend=bibtex,style=verbose-trad2]{biblatex}
+\title{Free As In Freedom}
+\author{Amir~Khayatzadeh}
+\institute[IAUM]{Islamic Azad University\\ Mashhad Branch}
+\date{Fall 2022}
+
+\usepackage{tikz}
+\titlegraphic{
+    \begin{tikzpicture}[overlay, remember picture]
+    \node[right=0.05cm] at (current page.151){
+        \includegraphics[scale=.09]{azad-logo.png}
+    };
+    \node[right=1.5cm] at (current page.151){
+        {\scriptsize Islamic Azad University Mashhad Branch}
+    };
+    \end{tikzpicture}
+}
+
+
+\begin{document}
+
+    % Title Frame
+    \begin{frame}
+        \titlepage
+    \end{frame}
+
+        \begin{frame}{Outline}
+            \tableofcontents
+        \end{frame}
+%    \AtBeginSection[ ]
+%    {
+%        \begin{frame}{Outline}
+%            \tableofcontents[currentsection]
+%        \end{frame}
+%    }
+    \section{Introduction}
+    \begin{frame}{Introduction}
+%        The typical computer user owns lots of software that he bought years ago, and no longer uses today. He
+%        may have upgraded his computer or changed brands, and then the program wouldn't work any longer. The
+%        software might have become obsolete. The program may simply not do what he needs. He may have
+%        bought two or more computers, and doesn't want to pay for a second copy of the software. Whatever the
+%        reason, the software that he paid for years ago isn't up to the task today. Does that really need to happen?
+%        What if you had the right to get a free upgrade whenever your software needed it? What if, when you
+%        switched from a Mac to a PC, you could switch software versions for free? What if, when the software
+%        doesn't work or isn't powerful enough, you can have it improved or even fix it yourself? What if the
+%        software was still maintained even if the company that produced it went out of business? What if you can
+%        use your software on your office workstation, and your home desktop computer, and your portable laptop,
+%        instead of just one computer? You'd probably still be using the software you paid for years ago. These are
+%        some of the rights that Open Source gives you.
+%        https://en.wikipedia.org/wiki/Linus%27s_law
+        \begin{figure}
+            \centering
+                \includegraphics[scale=.08]{FreeSoftwareFreeSociety.png}
+                \caption{GNU Project Logo \cite{GNUDOTORG:2}}
+        \end{figure}
+    \end{frame}
+
+    \section{History and Definition}
+    \begin{frame}{How It Started}{Before and After}
+        Since 1998, the open source software movement has become a revolution in software development.
+        However, the “revolution” in this rapidly changing field can actually trace its roots back at least 50 years.\cite{bretthauer2001open}
+        \begin{figure}
+            \centering
+                \includegraphics[scale=.65]{RMS.jpeg}
+                \caption{Richard M. Stallman. as a programmer at MIT AI Lab.\cite{GNUDOTORG:2}}
+        \end{figure}
+    \end{frame}
+
+    \begin{frame}{How It Started}{GNU's Not UNIX}
+        Stallman decided to create an operating system complete with all necessary software tools, such as
+        editors, compilers, and utilities.\cite{bretthauer2001open}
+        \begin{figure}
+            \centering
+                \includegraphics[width=0.7\textwidth]{gnu-linux2.png}
+                \caption{GNU/Linux \cite{pngegg}}
+        \end{figure}
+
+    \end{frame}
+
+    \begin{frame}{How It Started}{GNU Emacs}
+        \begin{figure}
+            \centering
+                \includegraphics[scale=.4]{emacs-logo.png}
+                \caption{GNU Emacs\cite{GNUDOTORG:2}}
+        \end{figure}
+        He made it available for free by anonymous FTP, but at that time access to the
+        Internet was not very common. As an alternate means of distributing the software, he offered to send people
+        the package on tape for \$150. Within a few months he was receiving 8-10 orders per month, which allowed
+        him to pay his living expenses.\cite{bretthauer2001open}
+    \end{frame}
+
+    \begin{frame}{Definition}{The four essential freedoms}
+        A program is free software if the program's users have the four essential freedoms\cite{GNUDOTORG:1}:
+        \begin{itemize}
+            \item The freedom to run the program as you wish, for any purpose (freedom 0).
+            \item The freedom to study how the program works, and change it so it does your computing as you wish (freedom 1). Access to the source code is a precondition for this.
+            \item The freedom to redistribute copies so you can help others (freedom 2).
+            \item The freedom to distribute copies of your modified versions to others (freedom 3). By doing this you can give the whole community a chance to benefit from your changes. Access to the source code is a precondition for this.        \end{itemize}
+    \end{frame}
+
+    \begin{frame}{Definition}{Libre Software}
+        you should think of “free” as in “free speech,” not as in “free beer.”
+        We sometimes call it “libre software,” borrowing the French or Spanish word for “free” as in freedom, to show we do not mean the software is gratis.\cite{GNUDOTORG:1}
+        \begin{figure}
+            \centering
+                \includegraphics[scale=.35]{software-libre.png}
+                \caption{libre sofware\cite{softwareLibre}}
+        \end{figure}
+    \end{frame}
+
+    \begin{frame}{How It Started}{Open Source}
+         The “open source” label was created on 1998 shortly after the announcement of the release of the Netscape source code.
+
+%         Open source enables a development method for software that harnesses the power of distributed peer review and transparency of process. The promise of open source is higher quality, better reliability, greater flexibility, lower cost, and an end to predatory vendor lock-in.
+         the Netscape announcement had created an opportunity to educate and advocate for the superiority of an open development process.\cite{OSIWEBSITE:2}
+         \begin{figure}
+             \begin{columns}
+                 \column{0.5\textwidth}
+                     \centering
+                     \includegraphics[width=0.5\textwidth]{bruce_perens.jpg}
+                     \caption{Bruce Perens, Co-founder of OSI\cite{bruseperensPhoto}}
+                 \column{0.5\textwidth}
+                    \centering
+                    \includegraphics[width=0.5\textwidth]{Eric-Raymond.jpg}
+                    \caption{Eric S. Raymond, Co-founder of OSI\cite{ericRaymondPhoto}}
+             \end{columns}
+         \end{figure}
+    \end{frame}
+
+    \begin{frame}{Open Source Initiative}{Mission}
+        \textbf{Mission of OSI:}
+
+        Open source enables a development method for software that harnesses the power of distributed peer review and transparency of process.
+        The promise of open source is \textbf{higher quality, better reliability, greater flexibility, lower cost, and an end to predatory vendor lock-in.}\cite{OSIWEBSITE:3}
+        \begin{figure}
+            \centering
+            \includegraphics[scale=.07]{osi_standard_logo_0.png}
+            \caption{OSI Logo\cite{OSIWEBSITE:4}}
+        \end{figure}
+    \end{frame}
+    \begin{frame}{Definition}{Open Source}
+        Open source doesn't just mean access to the source code. The distribution terms of open-source software must comply with the following criteria\cite{OSIWEBSITE:1}:
+        \begin{enumerate}
+            \item Free Redistribution
+            \item Source Code
+            \item Derived Works
+            \item Integrity of The Author's Source Code
+            \item No Discrimination Against Persons or Groups
+            \item No Discrimination Against Fields of Endeavor
+            \item Distribution of License
+            \item License Must Not Be Specific to a Product
+            \item License Must Not Restrict Other Software
+            \item License Must Be Technology-Neutral
+        \end{enumerate}
+    \end{frame}
+    \section{Open Source Vs Free Software}
+    \begin{frame}{OSS Vs FS}{Technics Vs Ethics}
+%        Like the FSF, the OSI's founders supported the development and distribution of free software,
+%        but they disagreed with the FSF about how to promote it,
+        OSI believes that software freedom was primarily a practical issue rather than an ideological one.\cite{OSIWEBSITE:5}
+
+        For the free software movement, however, non-free software is a social problem, and moving to free software is the solution.\cite{stallman2009viewpoint}
+%        Nearly all open source software is
+%        free software; the two terms describe
+%        almost the same category of software.
+%        But they stand for views based on fundamentally different values.
+        Open source is a development methodology; free software is a social movement.\cite{stallman2009viewpoint}
+%        the philosophy of open source considers issues in terms of how to make software “better”—in a practical sense only. It says that nonfree software is a suboptimal solution.
+        \begin{figure}
+            \centering
+            \includegraphics[scale=.17]{free-vs-open.png}
+            \caption{Slide from Richard Stallman's TEDx video\cite{rmstedx}}
+        \end{figure}
+        Misunderstandings of “Free Software” and “Open Source”
+%        However, the obvious meaning for
+%        the expression “open source software”
+%        is “You can look at the source code,”
+%        and most people seem to think that’s
+%        what it means. That is a much weaker
+%        criterion than free software, and much
+%        weaker than the official definition of
+%        open source. It includes many programs that are neither free nor open
+%        source. Since that obvious meaning
+%        for “open source” is not the meaning
+%        that its advocates intend, the result
+%        is that most people misunderstand
+%        the term. Here is how writer Neal Stephenson defined “open source”: Linux is “open source” software meaning,
+%        simply, that anyone can get copies of its
+%        source code files.
+%    The state of Kansas published a similar
+%    definition: Make use of open-source software (OSS). OSS is software for which the
+%    source code is freely and publicly available, though the specific licensing agreements vary as to what one is allowed to do
+%    with that code.
+    \end{frame}
+    \begin{frame}{OSS Vs FS}{Practical Differences}
+        \begin{itemize}
+            \item First, some open source licenses are too restrictive, so they do not qualify as free licenses.
+                Open Watcom IDE is nonfree because its license does not allow making a modified version and using it privately.\cite{GNUDOTORG:3}
+            \item Second, the criteria for open source are concerned solely with the licensing of the source code.\cite{GNUDOTORG:3}
+        \end{itemize}
+        \begin{columns}
+            \begin{column}{0.5\textwidth}
+                \begin{figure}
+                    \centering
+                    \includegraphics[width=0.7\textwidth]{tivo.png}
+                    \caption{TiVo Recorder\cite{tivoPhoto}}
+                \end{figure}
+            \end{column}
+            \begin{column}{0.5\textwidth}
+                \begin{figure}
+                    \centering
+                    \includegraphics[width=0.5\textwidth]{Android_logo_2019_(stacked).png}
+                    \caption{Android Logo\cite{androidPhoto}}
+                \end{figure}
+            \end{column}
+        \end{columns}
+    \end{frame}
+
+    \section{Why Should I Care Anyway?}
+        \subsection{As a Normal User}
+    \begin{frame}{Why?}{As a Normal User}
+       \begin{itemize}
+           \item Ethical reasons.
+           \item Make a better and more efficient society by supporting FOSS.
+           \item Privacy reasons.
+           \item Be the owner of your device.
+            \begin{figure}
+                \includegraphics[width=0.6\textwidth]{Edward-Snowden-quote-1.png}
+                \caption{Edward Snowden's quote about digital privacy\cite{edward-snowden-quote}}
+            \end{figure}
+       \end{itemize}
+    \end{frame}
+
+    \begin{frame}{Why?}{Quotes}
+        ``Value your freedom or you will lose it, teaches history. "Don't bother us with politics," respond those who don't want to learn.`` -Richard Stallman\cite{rms-quotes:1}
+        \begin{figure}
+            \centering
+            \includegraphics[width=0.8\textwidth]{rms-quote1.jpg}
+            \caption{Richard Stallman Quotes\cite{rms-quotes:2}}
+        \end{figure}
+    \end{frame}
+    \begin{frame}{Why?}{Quotes}
+        ``When a program is proprietary, you can’t even tell what it really does…it might have a backdoor to let the developer get into your machine. It might snoop
+        on what you do and send information back. This is not unusual.'' -Richard Stallman\cite{bretthauer2001open}
+        \begin{figure}
+            \centering
+            \includegraphics[width=0.5\textwidth]{faith-in-nonfree.png}
+            \caption{A slide from RMS TEDx Talk\cite{rmstedx}}
+        \end{figure}
+    \end{frame}
+
+        \subsection{As a Developer}
+    \begin{frame}{Why?}{As a Developer}
+        \textbf{Some Motives For Writing Free Software:}\cite{GNUDOTORG:4}
+        \begin{itemize}
+%            \item It's moraly right.
+%            \item People can help you Develop faster and better.
+%            \item You Can be seen better.
+            \item Fun
+            \item Political idealism
+            \item To be admired
+            \item Professional reputation
+            \item Community
+            \item Education
+            \item Gratitude
+            \item Money
+            \item Wanting a better program to use
+       \end{itemize}
+    \end{frame}
+
+    \begin{frame}{Open Source Development Model}{Linus's Law}
+        \begin{columns}
+            \begin{column}{0.5\textwidth}
+                \begin{figure}
+                    \centering
+                    \includegraphics[width=0.5\textwidth]{linus.jpeg}
+                    \caption{Linus Torvalds, Creator of Linux Kernel\cite{linus-torvaldsPhoto}}
+                \end{figure}
+                "given enough eyeballs, all bugs are shallow".
+            \end{column}
+            \begin{column}{0.5\textwidth}
+                “The power of Linux is as much about the community of cooperation behind it as the code itself. If Linux were hijacked—if someone attempted to
+                make and distribute a proprietary version—the appeal of Linux, which is essentially the open-source development model, would be lost for that proprietary version.” - Linus Torvalds\cite{bretthauer2001open}
+            \end{column}
+        \end{columns}
+    \end{frame}
+
+    \section{Examples}
+    \begin{frame}{Examples And Alternatives}
+        \begin{columns}
+            \begin{column}{0.3\textwidth}
+                \begin{figure}
+                    \centering
+                    \includegraphics[width=0.5\textwidth]{gnu-linux.png}
+                    \caption{GNU/Linux OS\cite{pngegg}}
+                \end{figure}
+            \end{column}
+            \begin{column}{0.3\textwidth}
+                \begin{figure}
+                    \centering
+                    \includegraphics[width=0.5\textwidth]{brave.png}
+                    \caption{Brave Web Browser\cite{pngegg}}
+                \end{figure}
+            \end{column}
+            \begin{column}{0.3\textwidth}
+                \begin{figure}
+                    \centering
+                    \includegraphics[width=0.5\textwidth]{gimp.png}
+                    \caption{GIMP Image Editor\cite{pngegg}}
+                \end{figure}
+            \end{column}
+        \end{columns}
+        \begin{columns}
+            \begin{column}{0.3\textwidth}
+                \begin{figure}
+                    \centering
+                    \includegraphics[width=\textwidth]{libreoffice.png}
+                    \caption{LibreOffice Office Suite\cite{pngegg}}
+                \end{figure}
+            \end{column}
+            \begin{column}{0.3\textwidth}
+                \begin{figure}
+                    \centering
+                    \includegraphics[width=0.5\textwidth]{inkscape.png}
+                    \caption{Inkscape Vector Graphics Editor\cite{pngegg}}
+                \end{figure}
+            \end{column}
+            \begin{column}{0.3\textwidth}
+                \begin{figure}
+                    \centering
+                    \includegraphics[width=0.5\textwidth]{blender.png}
+                    \caption{Blender 3D Computer Graphics Software\cite{pngegg}}
+                \end{figure}
+            \end{column}
+        \end{columns}
+    \end{frame}
+
+    \begin{frame}{Examples And Alternatives}
+        \begin{columns}
+            \begin{column}{0.3\textwidth}
+                \begin{figure}
+                    \centering
+                    \includegraphics[width=0.5\textwidth]{android.png}
+                    \caption{Android Open Source Project\cite{pngegg}}
+                \end{figure}
+            \end{column}
+            \begin{column}{0.3\textwidth}
+                \begin{figure}
+                    \centering
+                    \includegraphics[width=0.5\textwidth]{wordpress.png}
+                    \caption{WordPress Content Management System\cite{pngegg}}
+                \end{figure}
+            \end{column}
+            \begin{column}{0.3\textwidth}
+                \begin{figure}
+                    \centering
+                    \includegraphics[width=0.5\textwidth]{python.png}
+                    \caption{Python Programming Language\cite{pngegg}}
+                \end{figure}
+            \end{column}
+        \end{columns}
+        \begin{columns}
+            \begin{column}{0.3\textwidth}
+                \begin{figure}
+                    \centering
+                    \includegraphics[width=0.5\textwidth]{kdenlive.png}
+                    \caption{Kdenlive Video Editor\cite{pngegg}}
+                \end{figure}
+            \end{column}
+            \begin{column}{0.3\textwidth}
+                \begin{figure}
+                    \centering
+                    \includegraphics[width=0.5\textwidth]{audacity.png}
+                    \caption{Audacity Audio Editor\cite{pngegg}}
+                \end{figure}
+            \end{column}
+            \begin{column}{0.3\textwidth}
+                \begin{figure}
+                    \centering
+                    \includegraphics[width=0.5\textwidth]{scribus.png}
+                    \caption{Scribus Desktop Publishing Software\cite{pngegg}}
+                \end{figure}
+            \end{column}
+        \end{columns}
+    \end{frame}
+
+    \section{Money in FOSS}
+    \begin{frame}{Where is Money?}{Open Source Business Models}
+        “you make money in free software exactly the same way you do it in proprietary software:
+        by building a great product, marketing it with skill and imagination, looking after your customers, and
+        thereby building a brand that stands for quality and customer service.” - Richard Stallman\cite{bretthauer2001open}
+        \\[10pt]
+        \begin{itemize}
+            \item Offering Complementary Products and Services\cite{hall2016open}
+            \item Donations\cite{make-money-oss}
+            \item Licensing\cite{make-money-oss}
+            \item Providing Support in Open Source Software\cite{make-money-oss}
+        \end{itemize}
+    \end{frame}
+
+    \section{About FOSS Licenses}
+    \begin{frame}{OSI-approved licenses\cite{OSIWEBSITE:6}}{Popular Licenses}
+        \begin{columns}
+            \begin{column}{0.5\textwidth}
+                \begin{itemize}
+                    \item Apache-2.0
+                    \item BSD-3-Clause \& BSD-2-Clause
+                    \item GPL-2.0 \& GPL-3.0
+                    \item LGPL-2.0 \& LGPL-2.1 \& LGPL-3.0
+                    \item MIT
+                    \item MPL-2.0
+                    \item CDDL-1.0
+                    \item EPL-2.0
+                \end{itemize}
+            \end{column}
+            \begin{column}{0.5\textwidth}
+                \begin{figure}
+                    \centering
+                    \includegraphics[width=0.7\textwidth]{OSIApproved.png}
+                    \caption{\cite{OSIWEBSITE:6}}
+                \end{figure}
+            \end{column}
+        \end{columns}
+    \end{frame}
+
+    \begin{frame}{Copyleft Vs. Permissive}{Non-copyleft/Permissive License}
+        A "permissive" license is simply a non-copyleft open source license —
+        one that guarantees the freedoms to use, modify, and redistribute, but that permits proprietary derivative works.\cite{OSIWEBSITE:5}
+
+        \begin{figure}
+            \centering
+            \includegraphics[width=0.7\textwidth]{Permissive-Licenses.png}
+            \caption{Permissive Licenses\cite{permissive-licensesExpamles}}
+        \end{figure}
+    \end{frame}
+
+    \begin{frame}{Copyleft Vs. Permissive}{Copyleft License}
+        Copyleft is a general method for making a program (or other work) free (in the sense of freedom, not “zero price”),
+        and requiring all modified and extended versions of the program to be free as well.\cite{GNUDOTORG:5}
+
+        \begin{columns}
+            \begin{column}{0.5\textwidth}
+                \begin{figure}
+                    \centering
+                    \includegraphics[scale=.3]{Copyleft.png}
+                    \caption{Copyleft Symbol\cite{copyleftsymbol}}
+                \end{figure}
+            \end{column}
+            \begin{column}{0.5\textwidth}
+                \begin{figure}
+                    \centering
+                    \includegraphics[width=0.8\textwidth]{GPLv3_Logo.png}
+                    \caption{GPLv3 Logo\cite{gplLogo}}
+                \end{figure}
+            \end{column}
+        \end{columns}
+    \end{frame}
+    \section*{References}
+    \bibliography{main}
+    \bibliographystyle{ieeetr}
+\end{document}

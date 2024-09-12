@@ -1,0 +1,843 @@
+\documentclass[10pt]{beamer}
+
+\usetheme{AnnArbor}
+\usecolortheme{dracula}
+
+
+\title{The Rust Programming Language}
+\author{Amir~Khayatzadeh}
+\institute[IAUM]{Department of Computer Engineering\\ Islamic Azad University, Mashhad Branch}
+\date{Spring 2024}
+
+\usepackage{tikz}
+\titlegraphic{
+    \begin{tikzpicture}[overlay, remember picture]
+    \node[right=0.05cm] at (current page.149){
+        \includegraphics[scale=.1]{./images/azad-logo.png}
+    };
+    \node[right=1.5cm] at (current page.151){
+        {\scriptsize Islamic Azad University, Mashhad Branch}
+    };
+    \end{tikzpicture}
+}
+
+\AtBeginSection[]
+{
+  %\setbeamerfont{frametitle}{size=\tiny}
+    \begin{frame}[allowframebreaks]
+    %\fontsize{4pt}{7}\selectfont
+    %\vspace*{-5mm}
+    \frametitle{Table of Contents}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+\begin{document}
+
+\begin{frame}[plain]
+    \titlepage
+\end{frame}
+
+%\section{Introduction}
+%\begin{frame}{Why Rust?\cite{rust-website}}
+%
+%    \begin{columns}
+%
+%        \begin{column}{0.5\textwidth}
+%            \begin{itemize}
+%                \item Performance
+%                    \begin{itemize}
+%                        \item Fast and Memory Efficient
+%                        \item No Garbage Collector
+%                        \item Embedded Devices
+%                        \item In Linux Kernel
+%                    \end{itemize}
+%                \item Reliability
+%                    \begin{itemize}
+%                        \item Rich Type System
+%                        \item Ownership Model
+%                    \end{itemize}
+%                \item Productivity
+%                    \begin{itemize}
+%                        \item Friendly Compiler
+%                        \item Package Manager
+%                        \item Build Tool
+%                        \item Auto Formatter
+%                    \end{itemize}
+%            \end{itemize}
+%        \end{column}
+%
+%        \begin{column}{0.5\textwidth}
+%            \begin{figure}
+%                \centering
+%                \includegraphics[scale=.1]{images/rust-logo.png}
+%                \caption{Rust Icon \cite{pngwing}}
+%            \end{figure}
+%        \end{column}
+%
+%    \end{columns}
+%
+%\end{frame}
+
+%\defverbatim[colored]\makeset{
+%    \begin{lstlisting}[language=Rust, keywordstyle=\color{blue}]
+%        fn main() {
+%            let x = 5;
+%            println!("The value of x is: {x}");
+%            x = 6;
+%            println!("The value of x is: {x}");
+%        }
+%    \end{lstlisting}
+%}
+\section{Variables and Mutability}
+\subsection{Immutable Variables}
+\begin{frame}
+    By default, all variables in Rust are immutable. When a variable is immutable, once a value is bound to a name, you can’t change that value.\cite{rust-book}
+
+    \begin{figure}[htpb]
+        \centering
+        \includegraphics[width=0.45\textwidth]{./images/immutable-variable.png}
+        \vspace*{-3mm}
+        \caption{Filename: src/main.rs\cite{rust-book}}
+    \end{figure}
+
+    \vspace*{-5mm}
+
+    \begin{figure}[htpb]
+        \centering
+        \includegraphics[width=0.85\textwidth]{./images/immutable-variable-output.png}
+        \vspace*{-2mm}
+        \caption{Error Message On Compilation\cite{rust-book}}
+    \end{figure}
+
+\end{frame}
+
+\subsection{Mutable Variables}
+\begin{frame}
+    Put "mut" before the identifier to make the variable mutable.
+    \begin{figure}[htpb]
+        \centering
+        \includegraphics[width=0.9\textwidth]{./images/mutable-variable.png}
+        \caption{Filename: src/main.rs\cite{rust-book}}
+    \end{figure}
+
+    \begin{figure}[htpb]
+        \centering
+        \includegraphics[width=\textwidth]{./images/mutable-variable-output.png}
+        \caption{Output of The Code\cite{rust-book}}
+    \end{figure}
+
+\end{frame}
+
+\subsection{Constants}
+\begin{frame}
+    \begin{figure}[htpb]
+        \centering
+        \includegraphics[width=0.8\textwidth]{./images/constant.png}
+        \caption{An example of a constant declaration.\cite{rust-book}}
+    \end{figure}
+
+    Differences between immutable variables\cite{rust-book}:
+    \begin{enumerate}
+        \item The constant's type must be annotated.
+        \item Constants are compile-time. Immutable variables are runtime.
+        \item Constants are set only to a constant expression, not the result of a value that could only be computed at runtime.
+        \item Immutable variables cannot be global.
+    \end{enumerate}
+
+    \begin{figure}[htpb]
+        \centering
+        \includegraphics[width=\textwidth]{./images/global-immutable.png}
+        \caption{Compilation Error For Declaring An Immutable Variable Globally.}
+    \end{figure}
+\end{frame}
+
+
+\section{Data Types}
+\begin{frame}{Rust, A Statically Typed Language}
+    Compiler usually can infer the type based on the value, but in cases where multiple types are possible, we need to annotate the type:
+
+    \begin{figure}[htpb]
+        \centering
+        \includegraphics[width=0.8\textwidth]{./images/convert-type.png}
+        \vspace*{-2mm}
+        \caption{Convert a string to a numeric type.\cite{rust-book}}
+    \end{figure}
+
+    \vspace*{-5mm}
+    \begin{figure}[htpb]
+        \centering
+        \includegraphics[width=0.8\textwidth]{./images/compiler_error_convert_type.png}
+        \caption{If the type is not specified, we get compiler error.\cite{rust-book}}
+    \end{figure}
+\end{frame}
+
+\subsection{Scalar Types}
+\begin{frame}{Integer Types}
+    \vspace*{-5mm}
+    \begin{figure}[htpb]
+        \centering
+        \includegraphics[width=0.6\textwidth]{./images/integer-types-table.png}
+        \caption{Integer Types in Rust\cite{rust-book}}
+    \end{figure}
+    the isize and usize types depend on the architecture of the computer your program is running on, which is denoted in the table as “arch”: 64 bits if you’re on a 64-bit architecture and 32 bits if you’re on a 32-bit architecture.\cite{rust-book}
+\end{frame}
+
+\begin{frame}{Floating-Point Types}
+    \begin{figure}[htpb]
+        \centering
+        \includegraphics[width=0.8\textwidth]{./images/floating-point.png}
+        \caption{An example of floating-point variables in rust.\cite{rust-book}}
+    \end{figure}
+    The default type is f64 because on modern CPUs, it’s roughly the same speed as f32 but is capable of more precision. All floating-point types are signed.\cite{rust-book}
+
+
+\end{frame}
+
+\begin{frame}{The Boolean and Character Types}
+    \begin{figure}[htpb]
+        \centering
+        \includegraphics[width=0.9\textwidth]{./images/boolean.png}
+        \caption{An example of declaring boolean values.\cite{rust-book}}
+    \end{figure}
+
+    \vspace*{-5mm}
+    \begin{figure}[htpb]
+        \centering
+        \includegraphics[width=0.9\textwidth]{./images/character-type.png}
+        \caption{An example declaring char values.\cite{rust-book}}
+    \end{figure}
+
+    \vspace*{-5mm}
+    \begin{itemize}
+        \item Declared using single quotations.
+        \item 4 bytes in size.
+        \item Supports Unicode values.
+    \end{itemize}
+\end{frame}
+
+\subsection{Compound Types}
+\begin{frame}{The Tuple Type}
+    \begin{itemize}
+        \item Groups of values with different types.
+        \item Tuples have a fixed length.
+    \end{itemize}
+
+    \begin{figure}[htpb]
+        \centering
+        \includegraphics[width=0.8\textwidth]{./images/tuple.png}
+        \vspace*{-2mm}
+        \caption{An example with optional type annotations.\cite{rust-book}}
+    \end{figure}
+
+    \vspace*{-5mm}
+    \begin{figure}[htpb]
+        \centering
+        \includegraphics[width=0.8\textwidth]{./images/tuple-example.png}
+        \vspace*{-2mm}
+        \caption{An example of destructuring a tuple.\cite{rust-book}}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{The Array Type}
+    \begin{itemize}
+        \item Groups of values with the same type.
+        \item Arrays have a fixed length.
+        \item Allocated on the stack rather than the heap.
+    \end{itemize}
+
+    \begin{figure}[htpb]
+        \centering
+        \includegraphics[width=0.8\textwidth]{./images/array-declartion1.png}
+        \vspace*{-2mm}
+        \caption{Declaring an array with type annotation and length.\cite{rust-book}}
+    \end{figure}
+
+    \vspace*{-5mm}
+    \begin{figure}[htpb]
+        \centering
+        \includegraphics[width=0.6\textwidth]{./images/accessing-array.png}
+        \vspace*{-2mm}
+        \caption{Accessing array elements.\cite{rust-book}}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{An Example of Rust's Memory Safety}
+    \begin{figure}[htpb]
+        \centering
+        \includegraphics[width=0.8\textwidth]{./images/array-index-out-of-range.png}
+        \caption{An example of accessing array elements from input.\cite{rust-book}}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{Panicking}
+    \begin{figure}[htpb]
+        \centering
+        \includegraphics[width=\textwidth]{./images/rust-panicking-array.png}
+        \caption{Runtime Error (Panicking) if 10 is given as the index.\cite{rust-book}}
+    \end{figure}
+
+    This is an example of Rust’s memory safety principles in action. In many low-level languages, this kind of check is not done, and when you provide an incorrect index, invalid memory can be accessed.\cite{rust-book}
+
+\end{frame}
+
+\section{Functions}
+\begin{frame}{Definition And Parameters Declaration}
+    \begin{figure}[htpb]
+        \centering
+        \includegraphics[width=\textwidth]{./images/function-declaration-parameters.png}
+        \caption{An example of defining functions with parameters.\cite{rust-book}}
+    \end{figure}
+\end{frame}
+
+\subsection{Statements and Expressions}
+\begin{frame}{Rust: An Expression-Based Language}{Statements}
+    \begin{itemize}
+        \item Statements are instructions that perform some action and do not return a value.
+    \end{itemize}
+
+    Creating a variable and assigning a value to it with the let keyword is a statement.
+
+    Statements do not return values. Therefore, you can’t assign a let statement to another variable.
+    \begin{figure}[htpb]
+        \centering
+        \includegraphics[width=0.5\textwidth]{./images/statement-example1.png}
+        \caption{Code Using The let Statement In The Wrong Way.\cite{rust-book}}
+    \end{figure}
+
+    \vspace*{-5mm}
+    \begin{itemize}
+        \item Different from C and other languages, where the assignment returns the value of the assignment.
+        \item In other languages, you can write x = y = 6; not in Rust.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Rust: An Expression-Based Language}{Expressions}
+    \begin{itemize}
+        \item Expressions evaluate to a resultant value.\cite{rust-book}
+    \end{itemize}
+    Consider a math operation, such as 5 + 6, which is an expression that evaluates to the value 11.\cite{rust-book}
+
+    \begin{itemize}
+        \item The 6 in the statement let y = 6; is an expression that evaluates to the value 6.
+        \item Calling a function/macro is an expression.
+        \item Scope blocks are expressions.
+    \end{itemize}
+
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+
+            \begin{figure}[htpb]
+                \centering
+                \includegraphics[width=\textwidth]{./images/expression-example1.png}
+                \caption{An example showcasing expressions.\cite{rust-book}}
+            \end{figure}
+
+        \end{column}
+
+        \begin{column}{0.5\textwidth}
+
+            \begin{itemize}
+                \item The x + 1 line doesn’t have a semicolon at the end.
+                \item Expressions do not include ending semicolons.
+                \item Adding semicolons turn it to a statement, which do not return a value.
+            \end{itemize}
+
+        \end{column}
+    \end{columns}
+
+\end{frame}
+
+\subsection{Functions with Return Values}
+\begin{frame}{Examples of Functions that Return Values}
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \vspace*{-3mm}
+            \begin{figure}[htpb]
+                \centering
+                \includegraphics[width=\textwidth]{./images/function-return.png}
+                \caption{A function that returns a value.\cite{rust-book}}
+            \end{figure}
+
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \begin{figure}[htpb]
+                \centering
+                \includegraphics[width=\textwidth]{./images/function-return2.png}
+                \caption{A function that add 1 and returns the result.\cite{rust-book}}
+            \end{figure}
+
+        \end{column}
+    \end{columns}
+
+\end{frame}
+
+\begin{frame}{A Common Mistake When Returning Values}
+    \begin{figure}[htpb]
+        \centering
+        \includegraphics[width=0.5\textwidth]{./images/function-return-mistake.png}
+        \vspace*{-2mm}
+        \caption{Adding Semicolon to The Function's Last Expression.\cite{rust-book}}
+    \end{figure}
+
+    \vspace*{-3mm}
+    \begin{figure}[htpb]
+        \centering
+        \includegraphics[width=0.8\textwidth]{./images/function-return-mistake-error.png}
+    \end{figure}
+\end{frame}
+
+\section{Comments}
+\begin{frame}{How to Write Comments?}
+    \begin{figure}[htpb]
+        \centering
+        \includegraphics[width=\textwidth]{./images/comments.png}
+        \caption{A simple comment\cite{rust-book}}
+    \end{figure}
+
+    \begin{figure}[htpb]
+        \centering
+        \includegraphics[width=\textwidth]{./images/comments2.png}
+        \caption{Multi-Line Comment\cite{rust-book}}
+    \end{figure}
+\end{frame}
+
+\section{Control Flows}
+\subsection{If}
+\begin{frame}{If Expression}
+    \begin{figure}[htpb]
+        \centering
+        \includegraphics[width=0.6\textwidth]{./images/if.png}
+        \vspace*{-2mm}
+        \caption{An example using the if expression\cite{rust-book}}
+    \end{figure}
+
+    \vspace*{-5mm}
+    \begin{figure}[htpb]
+        \centering
+        \includegraphics[width=0.6\textwidth]{./images/if2.png}
+        \vspace*{-2mm}
+        \caption{An erroneous example using the if expression\cite{rust-book}}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{Using if in a let Statement}
+    \begin{figure}[htpb]
+        \centering
+        \includegraphics[width=0.8\textwidth]{./images/if3.png}
+        \caption{Assigning the result of an if expression to a variable\cite{rust-book}}
+    \end{figure}
+
+    \begin{figure}[htpb]
+        \centering
+        \includegraphics[width=0.8\textwidth]{./images/if4.png}
+        \caption{An erroneous example using the if let statement\cite{rust-book}}
+    \end{figure}
+\end{frame}
+
+\subsection{Loops}
+\begin{frame}{Infinite Loop}
+    \begin{figure}[htpb]
+        \centering
+        \includegraphics[width=\textwidth]{./images/loop1.png}
+        \caption{An example using the loop keyword\cite{rust-book}}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{Returning Values from Loops}
+    \begin{figure}[htpb]
+        \centering
+        \includegraphics[width=0.8\textwidth]{./images/loop2.png}
+        \caption{An example that returns a value in a loop\cite{rust-book}}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{Loop Labels}
+    \begin{figure}[htpb]
+        \centering
+        \includegraphics[width=0.7\textwidth]{./images/loop3.png}
+        \vspace*{-2mm}
+        \caption{An example using loop labels\cite{rust-book}}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{Conditional Loops with while}
+    \begin{figure}[htpb]
+        \centering
+        \includegraphics[width=0.7\textwidth]{./images/loop4.png}
+        \caption{Using a while loop to run code while a condition holds true\cite{rust-book}}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{Looping Through a Collection with for}
+    \begin{figure}[htpb]
+        \centering
+        \includegraphics[width=0.8\textwidth]{./images/loop5.png}
+        \caption{Looping through each element of a collection using a for loop\cite{rust-book}}
+    \end{figure}
+\end{frame}
+
+\section{Ownership: The Rust's Most Unique Feature}
+\subsection{Definition}
+\begin{frame}{Understanding}
+    Why?
+    \begin{itemize}
+        \item Making memory safety guarantees without needing a garbage collector.\cite{rust-book}
+        \item None of the features of ownership will slow down your program while it’s running.\cite{rust-book}
+    \end{itemize}
+
+    Topics to talk about:
+    \begin{itemize}
+        \item Borrowing.
+        \item Slices.
+        \item How Rust lays data out in memory.
+    \end{itemize}
+
+    What?
+    \begin{itemize}
+        \item A set of rules governing how a Rust program manages memory.\cite{rust-book}
+        \item If any of the rules are violated, the program won’t compile.\cite{rust-book}
+        \item The main purpose of ownership is to manage heap data.\cite{rust-book}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    Ownership rules:
+    \begin{itemize}
+        \item Each value in Rust has an owner.
+        \item There can only be one owner at a time.
+        \item When the owner goes out of scope, the value will be dropped.
+    \end{itemize}
+
+    The memory is automatically returned once the variable that owns it goes out of scope.\cite{rust-book}
+
+    \begin{figure}[htpb]
+        \centering
+        \includegraphics[width=\textwidth]{./images/ownership1.png}
+        \caption{An example of declaring a string in heap.\cite{rust-book}}
+    \end{figure}
+
+    After going out of scope, Rust calls the \textit{drop} function.
+\end{frame}
+
+\subsection{Variables and Data Interacting with Move}
+\begin{frame}{Assignment of Variables}
+    \begin{figure}[htpb]
+        \centering
+        \includegraphics[width=0.5\textwidth]{./images/ownership2.png}
+        \caption{Assigning the integer value of variable x to y.\cite{rust-book}}
+    \end{figure}
+    Because integers are simple values with a known, fixed size, and these two 5 values are pushed onto the stack.\cite{rust-book}
+
+    \begin{figure}[htpb]
+        \centering
+        \includegraphics[width=0.8\textwidth]{./images/ownership3.png}
+        \caption{Doing the same with the String type.\cite{rust-book}}
+    \end{figure}
+
+    \begin{itemize}
+        \item These two are not the same.
+        \item The second line does not make a copy of the value in s1 and does not bind it to s2.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{What Happens to String?}
+    \vspace*{-3.5mm}
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \begin{figure}[htpb]
+                \centering
+                \includegraphics[width=\textwidth]{./images/ownership4.png}
+                \caption{Representation in memory of a String holding the value "hello" bound to s1\cite{rust-book}}
+            \end{figure}
+
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \begin{figure}[htpb]
+                \centering
+                \includegraphics[width=\textwidth]{./images/ownership5.png}
+                \caption{Representation in memory of the variable s2 that has a copy of the pointer, length, and capacity of s1\cite{rust-book}}
+            \end{figure}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Double Free Error}
+    Both s1 and s2 point to the same memory location, leading to two times calling the drop function when they go out of scope.
+
+    To solve this problem and ensure memory safety:
+    \begin{itemize}
+        \item After the line let s2 = s1;, Rust considers s1 as no longer valid.
+        \item Therefore, Rust doesn’t need to free anything when s1 goes out of scope.
+    \end{itemize}
+
+    \begin{columns}
+        \begin{column}{0.4\textwidth}
+            \begin{figure}[htpb]
+                \centering
+                \includegraphics[width=\textwidth]{./images/ownership6.png}
+                \caption{Erroneous code that tries to copy s1 to s2\cite{rust-book}}
+            \end{figure}
+        \end{column}
+        \begin{column}{0.6\textwidth}
+            \begin{figure}[htpb]
+                \centering
+                \includegraphics[width=\textwidth]{./images/ownership6-error.png}
+                \caption{Rust prevents using an invalidated reference\cite{rust-book}}
+            \end{figure}
+        \end{column}
+    \end{columns}
+
+\end{frame}
+
+\begin{frame}{Shallow Copy vs. Move}
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \begin{figure}[htpb]
+                \centering
+                \includegraphics[width=\textwidth]{./images/ownership7.png}
+                \caption{Representation in memory after s1 has been invalidated\cite{rust-book}}
+            \end{figure}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \begin{itemize}
+                \item Shallow Copy and Deep Copy
+                \item In Rust it is a \textit{move} because the first variable gets invalidated.\cite{rust-book}
+                \item We say that s1 was \textit{moved} into s2.\cite{rust-book}
+                \item Rust will never automatically create “deep” copies of your data.\cite{rust-book}
+                \item Therefore, any automatic copying can be assumed to be inexpensive in terms of runtime performance.\cite{rust-book}
+            \end{itemize}
+        \end{column}
+    \end{columns}
+
+\end{frame}
+
+\subsection{Variables and Data Interacting with Clone}
+\begin{frame}{Using Clone to Copy Deeply}
+    If copying the heap data is desired, we can use a method called clone.
+    \begin{figure}[htpb]
+        \centering
+        \includegraphics[width=\textwidth]{./images/ownership8.png}
+        \caption{Using The Clone Method\cite{rust-book}}
+    \end{figure}
+
+    \begin{itemize}
+        \item When you see a call to clone, you know that some arbitrary code is being executed and that code may be expensive.\cite{rust-book}
+    \end{itemize}
+\end{frame}
+
+\subsection{Stack-Only Data: Copy}
+\begin{frame}{Types with The Copy Trait}
+    \begin{columns}
+        \begin{column}{0.4\textwidth}
+            Why in this code, x is still valid and wasn't moved into y?
+        \end{column}
+        \begin{column}{0.6\textwidth}
+            \begin{figure}[htpb]
+                \centering
+                \includegraphics[width=\textwidth]{./images/ownership9.png}
+                \caption{An example of copying variables with simple types\cite{rust-book}}
+            \end{figure}
+        \end{column}
+    \end{columns}
+
+    \begin{itemize}
+        \item They are stored entirely on the stack.
+        \item Copying of these variables is quick and inexpensive.
+    \end{itemize}
+
+    For variables that are stored in the stack, Rust has a special annotation called the Copy trait. If a type implements this trait, variables that use it do not move.
+
+    \begin{itemize}
+        \item All the integer types, such as u32.
+        \item The Boolean type, bool, with values true and false.
+        \item Tuples, if they only contain types that also implement Copy. For example, (i32, i32) implements Copy, but (i32, String) does not.
+    \end{itemize}
+
+\end{frame}
+
+\subsection{Ownership and Functions}
+\begin{frame}{Passing is Like Assigning}
+    Passing a variable to a function will move or copy, just as assignment does.\cite{rust-book}
+
+    \begin{figure}[htpb]
+        \centering
+        \includegraphics[width=0.85\textwidth]{./images/ownership-function.png}
+        \vspace*{-2mm}
+        \caption{Functions with ownership and scope annotated\cite{rust-book}}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{Return Values and Scope}
+    Returning values can also transfer ownership.\cite{rust-book}
+    \begin{figure}[htpb]
+        \centering
+        \includegraphics[width=0.7\textwidth]{./images/ownership-function2.png}
+        \vspace*{-2mm}
+        \caption{Transferring ownership of return values\cite{rust-book}}
+    \end{figure}
+\end{frame}
+
+\begin{frame}
+    It’s quite annoying that anything we pass in also needs to be passed back if we want to use it again.\cite{rust-book}
+
+    Rust allows returning multiple values as a tuple:
+    \begin{figure}[htpb]
+        \centering
+        \includegraphics[width=\textwidth]{./images/ownership-function3.png}
+        \caption{Returning ownership of parameters}
+    \end{figure}
+
+    But this is too much work, so a feature is needed to address this problem.
+\end{frame}
+
+\section{References and Borrowing}
+\begin{frame}{References}
+    \begin{itemize}
+        \item Like pointers.
+        \item That data is owned by some other variable.
+        \item Unlike a pointer, a reference is guaranteed to point to a valid value.
+    \end{itemize}
+
+    \begin{figure}[htpb]
+        \centering
+        \includegraphics[width=0.8\textwidth]{./images/references1.png}
+        \caption{Using a reference to pass the value without loosing ownership\cite{rust-book}}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{References}{In The Memory}
+    \begin{figure}[htpb]
+        \centering
+        \includegraphics[width=\textwidth]{./images/references2.png}
+        \caption{A diagram of \&String s pointing at String s1\cite{rust-book}}
+    \end{figure}
+
+    \vspace*{-2mm}
+    This action of creating a reference is called borrowing. As in real life, if a person owns something, you can borrow it from them. When you’re done, you have to give it back. You don’t own it.\cite{rust-book}
+\end{frame}
+
+\section{The Slice Type}
+\subsection{String Slices}
+\begin{frame}{String Slices: A Reference to A Part of A String}
+    \begin{figure}[htpb]
+        \centering
+        \includegraphics[width=0.5\textwidth]{./images/slices.png}
+        \vspace*{-2mm}
+        \caption{Using Slices\cite{rust-book}}
+    \end{figure}
+
+    \vspace*{-5mm}
+    \begin{figure}[htpb]
+        \centering
+        \includegraphics[width=0.5\textwidth]{./images/slices2.png}
+        \vspace*{-2mm}
+        \caption{Slices without the first number\cite{rust-book}}
+    \end{figure}
+
+    \vspace*{-5mm}
+    \begin{figure}[htpb]
+        \centering
+        \includegraphics[width=0.5\textwidth]{./images/slices3.png}
+        \vspace*{-2mm}
+        \caption{Slices without the second number\cite{rust-book}}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{Slices In Memory}
+    \begin{figure}[htpb]
+        \centering
+        \includegraphics[width=0.5\textwidth]{./images/slices4.png}
+        \vspace*{-2mm}
+        \caption{String slice referring to part of a String\cite{rust-book}}
+    \end{figure}
+\end{frame}
+
+\section{Struct}
+\subsection{Definition}
+\begin{frame}
+    \begin{figure}[htpb]
+        \centering
+        \includegraphics[width=0.5\textwidth]{./images/struct.png}
+        \caption{A User struct definition\cite{rust-book}}
+    \end{figure}
+
+    \begin{figure}[htpb]
+        \centering
+        \includegraphics[width=0.8\textwidth]{./images/struct2.png}
+        \caption{Creating an instance of the User struct\cite{rust-book}}
+    \end{figure}
+\end{frame}
+
+\subsection{Methods}
+\begin{frame}
+    \begin{figure}[htpb]
+        \centering
+        \includegraphics[width=0.75\textwidth]{./images/struct3.png}
+        \caption{Defining an area method on the Rectangle struct\cite{rust-book}}
+    \end{figure}
+\end{frame}
+
+\section{Enum}
+\begin{frame}
+    \begin{figure}[htpb]
+        \centering
+        \includegraphics[width=\textwidth]{./images/enum.png}
+        \caption{an enum and declaring two variables with it\cite{rust-book}}
+    \end{figure}
+\end{frame}
+
+\subsection{Pattern Matching}
+\begin{frame}{The match Control Flow Construct}
+    \begin{figure}[htpb]
+        \centering
+        \includegraphics[width=0.7\textwidth]{./images/enum2.png}
+        \caption{An enum and a match expression that has the variants of the enum as its patterns\cite{rust-book}}
+    \end{figure}
+\end{frame}
+
+\section{I/O Operations}
+\subsection{Reading A File}
+\begin{frame}{How to Read A File}
+    \begin{figure}[htpb]
+        \centering
+        \includegraphics[width=\textwidth]{./images/file.png}
+        \caption{Reading the contents of the file specified by the second argument\cite{rust-book}}
+    \end{figure}
+\end{frame}
+
+\subsection{Command-Line Arguments}
+\begin{frame}{Collecting Command-Line Arguments Into A Vector}
+    \begin{figure}[htpb]
+        \centering
+        \includegraphics[width=\textwidth]{./images/cmd.png}
+        \caption{Creating variables to hold the query argument and file path argument\cite{rust-book}}
+    \end{figure}
+\end{frame}
+
+\section{Common Collection}
+\subsection{Vectors}
+\begin{frame}
+    \begin{figure}[htpb]
+        \centering
+        \includegraphics[width=0.8\textwidth]{./images/vec1.png}
+        \caption{Creating a new, empty vector to hold values of type i32\cite{rust-book}}
+    \end{figure}
+
+    \begin{figure}[htpb]
+        \centering
+        \includegraphics[width=0.8\textwidth]{./images/vec2.png}
+        \caption{Creating a new vector containing values\cite{rust-book}}
+    \end{figure}
+
+    \begin{figure}[htpb]
+        \centering
+        \includegraphics[width=0.8\textwidth]{./images/vec3.png}
+        \caption{Printing each element in a vector by iterating over the elements using a for loop\cite{rust-book}}
+    \end{figure}
+\end{frame}
+
+\section*{References}
+\bibliography{main}
+\bibliographystyle{ieeetr}
+\end{document}
