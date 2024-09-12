@@ -1,2 +1,2 @@
-# LaTeX-examples
-Some presentations created by Beamer(LaTeX)
+# LaTeX Presentations
+Some presentations created with Beamer(LaTeX)
